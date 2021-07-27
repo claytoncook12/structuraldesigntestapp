@@ -1,0 +1,18 @@
+{% extends 'timesheet/base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Timesheet Sign In</h1>
+<hr>
+<br>
+
+
+<form method="POST">
+    {% csrf_token %}
+<table>
+    {{ form.as_table }}
+</table>
+<input type="submit" value="Submit">
+</form>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  web:
+    build:
+      context: ./DjangoApp
+      dockerfile: Dockerfile.prod
+    command: |
+      gunicorn core.wsgi:application --bind 0.0.0.0:8000
+    ports:
+      - "80:8000"
+    env_file:
+      - ./DjangoApp/.env
+    volumes:
+      - sqlite-data:/home/app/web/database
+volumes:
+  sqlite-data:
+    driver: local

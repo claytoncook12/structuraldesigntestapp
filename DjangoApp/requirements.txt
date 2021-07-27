@@ -1,0 +1,7 @@
+Django==3.2.5
+factory-boy==3.2.0
+pytest-django==4.4.0
+python-decouple
+gunicorn
+whitenoise
+django-crispy-forms

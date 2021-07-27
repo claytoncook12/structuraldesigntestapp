@@ -1,0 +1,21 @@
+{% extends 'timesheet/base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Timesheets</h1>
+<hr>
+<br>
+
+<span style="display: inline;">
+    <form style="" action="{% url 'timesheet:timesheet_signin' %}">
+        <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
+    <form style="" action="{% url 'timesheet:timesheet_signout' %}">
+        <button type="submit" class="btn btn-primary">Sign Out</button>
+    </form>
+    <form style="" action="{% url 'timesheet:timesheet_assignhours' %}">
+        <button type="submit" class="btn btn-primary">Assign Hours</button>
+    </form>
+</span>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'timesheet/base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Todo</h1>
+<hr>
+<br>
+
+<ul style="text-align: left;">
+    <input type="checkbox" onclick="return false;" checked="checked"/>
+        Timesheet SignIn<br>
+    <input type="checkbox" onclick="return false;" checked="checked"/>
+        Timesheet SignOut<br>
+    <input type="checkbox" onclick="return false;"/>
+        Add Testing for SignIn Page<br>
+    <input type="checkbox" onclick="return false;"/>
+        Add Testing for SignOut Page<br>
+    <input type="checkbox" onclick="return false;"/>
+        Create Adding Hours Page<br>
+    <input type="checkbox" onclick="return false;"/>
+        Create Sqlite Database in Docker that persists<br>
+</ul>
+
+
+{% endblock %}
