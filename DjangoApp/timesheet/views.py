@@ -11,22 +11,23 @@ def timesheet_home(request):
 @login_required
 def timesheet_signin(request):
     if request.method == 'POST':
-        form = SignInEntryForm(request.POST)
-        form.user_id = request.user_id
-        breakpoint()
+        form = SignInEntryForm(request, data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('timesheet_home')
+            return redirect('timesheet:timesheet_home')
     else:
-        form = SignInEntryForm()
+        form = SignInEntryForm(request)
     return render(request, 'timesheet/timesheet_signin.html', {'form': form})
 
 @login_required
 def timesheet_signout(request):
     if request.method == 'POST':
-        pass
+        form = SignOutEntryForm(request, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('timesheet:timesheet_home')
     else:
-        form = SignOutEntryForm()
+        form = SignOutEntryForm(request)
     return render(request, 'timesheet/timesheet_signout.html', {'form': form})
 
 @login_required

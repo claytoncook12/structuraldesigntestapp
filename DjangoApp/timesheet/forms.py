@@ -25,19 +25,38 @@ class DateInput(forms.DateInput):
 class SignInEntryForm(forms.ModelForm):
     class Meta:
         model = SignInEntry
-        fields = ['att_abs_type',
-                  'location',
-                  'date',
-                  'time',
-                  'comment']
+        exclude = ["user"]
         widgets = {'date': DateInput(), 'time': forms.Select(choices=TIME_CHOICES)}
+    
+    def __init__(self, request, *args, **kwargs):
+        self.request = request
+        super().__init__(*args, **kwargs)
+    
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        instance.user = self.request.user
+        if commit:
+            instance.save()
+            self.save_m2m()
+        return instance
 
 class SignOutEntryForm(forms.ModelForm):
     class Meta:
         model = SignOutEntry
-        fields = '__all__'
+        exclude = ["user"]
         widgets = {'date': DateInput(),
             'time': forms.Select(choices=TIME_CHOICES),
             'lunch_start': forms.Select(choices=LUNCH_TIME_CHOICES),
             'lunch_end': forms.Select(choices=LUNCH_TIME_CHOICES)
             }
+    def __init__(self, request, *args, **kwargs):
+        self.request = request
+        super().__init__(*args, **kwargs)
+    
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        instance.user = self.request.user
+        if commit:
+            instance.save()
+            self.save_m2m()
+        return instance
