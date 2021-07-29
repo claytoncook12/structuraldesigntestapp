@@ -1,6 +1,7 @@
 from django.contrib import admin
-from timesheet.models import RC, SignInEntry
+from .models import RC, SignInEntry, SignOutEntry
 
 # Register your models here.
 admin.site.register(RC)
 admin.site.register(SignInEntry)
+admin.site.register(SignOutEntry)
