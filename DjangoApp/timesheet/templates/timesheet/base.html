@@ -23,11 +23,15 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'timesheet:timesheet_home' %}">Home</a></li>
+                      <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'timesheet:timesheet_home' %}">Timesheet</a></li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'account_logout' %}">Sign Out</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'account_login' %}">Sign In</a></li>
+                        {% endif %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Timesheet</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="{% url 'timesheet:timesheet_checklist' %}">App Checklist</a></li>
                             </ul>
@@ -39,6 +43,28 @@
         <!-- Page content-->
         <div class="container" id="main-content">
             <div class="text-center mt-5">
+              <!-- Messages -->
+              {% if messages %}
+              <div id="messageDIV" class="alert alert-primary" role="alert">
+                <button class="btn float-right" onclick="hideFunction()">X</button><br>
+                <script>
+                  function hideFunction() {
+                    var x = document.getElementById("messageDIV");
+                    if (x.style.display === "none") {
+                      x.style.display = "block";
+                    } else {
+                      x.style.display = "none";
+                    }
+                  }
+                </script>
+                <strong>Messages:</strong>
+                <ul>
+                  {% for message in messages %}
+                  {{message}}<br>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
               {% block content %}{% endblock %}
             </div>
         </div>
