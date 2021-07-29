@@ -25,7 +25,11 @@ class DateInput(forms.DateInput):
 class SignInEntryForm(forms.ModelForm):
     class Meta:
         model = SignInEntry
-        fields = '__all__'
+        fields = ['att_abs_type',
+                  'location',
+                  'date',
+                  'time',
+                  'comment']
         widgets = {'date': DateInput(), 'time': forms.Select(choices=TIME_CHOICES)}
 
 class SignOutEntryForm(forms.ModelForm):

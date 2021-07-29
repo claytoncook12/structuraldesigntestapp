@@ -11,7 +11,12 @@ def timesheet_home(request):
 @login_required
 def timesheet_signin(request):
     if request.method == 'POST':
-        pass
+        form = SignInEntryForm(request.POST)
+        form.user_id = request.user_id
+        breakpoint()
+        if form.is_valid():
+            form.save()
+            return redirect('timesheet_home')
     else:
         form = SignInEntryForm()
     return render(request, 'timesheet/timesheet_signin.html', {'form': form})

@@ -1,5 +1,6 @@
 from django.db import models
 import datetime as dt
+from django.contrib.auth.models import User
 
 att_abs_type_choices = [
     ('1REG','1REG'),
@@ -20,6 +21,7 @@ class RC(models.Model):
         return (f'{self.id} {self.rc_desc}')
 
 class SignInEntry(models.Model):
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
     att_abs_type = models.CharField(max_length=4,choices=att_abs_type_choices,default='1REG')
     location = models.CharField('Work Location For Day',max_length=4, choices=location_choices, default='offi')
     date = models.DateField('Sign In Date', default=dt.date.today)
@@ -30,6 +32,7 @@ class SignInEntry(models.Model):
         return (f'Sign_In:{self.date} {self.time} {self.location}')
 
 class SignOutEntry(models.Model):
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
     date = models.DateField('Sign Out Date', default=dt.date.today)
     time = models.TimeField('Sign Out Time',default=dt.time(7, 00))
     lunch_start = models.TimeField('Lunch Start',default=dt.time(12, 00))
