@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from timesheet.forms import SignInEntryForm, SignOutEntryForm
 
-# Create your views here.
 def timesheet_home(request):
     if request.user.is_anonymous:
         return redirect('account_login')
     else:
         return render(request, 'timesheet/home.html')
 
+@login_required
 def timesheet_signin(request):
     if request.method == 'POST':
         pass
@@ -15,6 +16,7 @@ def timesheet_signin(request):
         form = SignInEntryForm()
     return render(request, 'timesheet/timesheet_signin.html', {'form': form})
 
+@login_required
 def timesheet_signout(request):
     if request.method == 'POST':
         pass
@@ -22,6 +24,7 @@ def timesheet_signout(request):
         form = SignOutEntryForm()
     return render(request, 'timesheet/timesheet_signout.html', {'form': form})
 
+@login_required
 def timesheet_assignhours(request):
     return render(request, 'timesheet/timesheet_assignhours.html')
 
