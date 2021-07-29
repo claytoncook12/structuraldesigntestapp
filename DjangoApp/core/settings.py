@@ -141,3 +141,7 @@ STATIC_ROOT = Path(BASE_DIR) / 'staticfiles'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Account Redirects for AllAuth
+ACCOUNT_SIGNUP_REDIRECT_URL = ""
+LOGIN_REDIRECT_URL = "timesheet:timesheet_home"
