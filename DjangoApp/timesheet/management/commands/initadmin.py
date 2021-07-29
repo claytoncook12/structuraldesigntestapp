@@ -7,10 +7,12 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         # The magic line
-        User.objects.create_user(username= 'admin_temp',
-                                email='',
-                                password='admin_temp',
-                                is_staff=True,
-                                is_active=True,
-                                is_superuser=True
-        )
+        try:
+            User.objects.create_user(username= 'admin_temp',
+                                    email='',
+                                    password='admin_temp',
+                                    is_staff=True,
+                                    is_active=True,
+                                    is_superuser=True)
+        except:
+            pass
