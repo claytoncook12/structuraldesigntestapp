@@ -5,3 +5,4 @@ python-decouple
 gunicorn
 whitenoise
 django-crispy-forms
+django-allauth
