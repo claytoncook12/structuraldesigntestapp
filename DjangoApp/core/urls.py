@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 app_name='core'
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path('', include('timesheet.urls', namespace='timesheet')),
 ]
 
