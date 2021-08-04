@@ -30,6 +30,9 @@ class SignInEntry(models.Model):
 
     def __str__(self):
         return (f'Sign_In:{self.date} {self.time} {self.location}')
+    
+    class Meta:
+        ordering = ['-date','time']
 
 class SignOutEntry(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT)
