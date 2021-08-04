@@ -38,8 +38,8 @@
         <tr>
             <td>{{ entry.att_abs_type }}</td>
             <td>{{ entry.location }}</td>
-            <td>{{ entry.date }}</td>
-            <td>{{ entry.time }}</td>
+            <td>{{ entry.date|date:"M j, Y" }}</td>
+            <td>{{ entry.time|time:"g:i a" }}</td>
             <td>{{ entry.comment }}</td>
       </tr>
       {% endfor %}
