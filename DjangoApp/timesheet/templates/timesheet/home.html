@@ -18,4 +18,32 @@
     </form>
 </span>
 
+<br>
+<br>
+<br>
+<h2>Timesheet Log</h2>
+<hr>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Att_Abs_Type</th>
+        <th scope="col">Location</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for entry in entries %}
+        <tr>
+            <td>{{ entry.att_abs_type }}</td>
+            <td>{{ entry.location }}</td>
+            <td>{{ entry.date }}</td>
+            <td>{{ entry.time }}</td>
+            <td>{{ entry.comment }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
 {% endblock %}

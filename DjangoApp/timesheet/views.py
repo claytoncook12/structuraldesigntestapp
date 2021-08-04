@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from timesheet.forms import SignInEntryForm, SignOutEntryForm
+from timesheet.models import SignInEntry
 
 def timesheet_home(request):
     if request.user.is_anonymous:
         return redirect('account_login')
     else:
-        return render(request, 'timesheet/home.html')
+        entries = SignInEntry.objects.filter(user=request.user)
+        return render(request, 'timesheet/home.html', {'entries': entries})
 
 @login_required
 def timesheet_signin(request):
